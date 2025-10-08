@@ -48,11 +48,9 @@ export default function ResumeForm() {
 
     try {
       setLoading(true)
-      const response = await axios.post(
-        'http://localhost:4444/api/resume/',
-        formData,
-        { responseType: 'blob' }
-      )
+      const response = await axios.post('/api/resume/', formData, {
+        responseType: 'blob',
+      })
 
       const url = window.URL.createObjectURL(new Blob([response.data]))
       setFileUrl(url)

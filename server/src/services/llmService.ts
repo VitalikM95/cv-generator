@@ -4,7 +4,7 @@ import type { ResumeInput } from '../schemas/resumeSchema'
 // Спроба генерації тексту через AI.
 export async function improveWithLLM(data: ResumeInput): Promise<string> {
   const provider = process.env.LLM_PROVIDER ?? 'openai'
-  const model = process.env.LLM_MODEL ?? 'gpt-3.5-turbo'
+  const model = process.env.LLM_MODEL ?? 'gpt-4o-mini'
   const apiKey = process.env.OPENAI_API_KEY
 
   if (provider !== 'openai' || !apiKey) {
