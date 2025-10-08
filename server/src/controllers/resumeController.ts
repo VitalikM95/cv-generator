@@ -11,6 +11,7 @@ export async function createResume(req: Request, res: Response) {
   try {
     finalText = await improveWithLLM(data)
   } catch (err: any) {
+    console.error('LLM error:', err)
     finalText = fallbackGenerate(data)
   }
 

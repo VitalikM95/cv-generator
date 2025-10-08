@@ -4,8 +4,10 @@ import type { ResumeInput } from '../schemas/resumeSchema'
 // Спроба генерації тексту через AI.
 export async function improveWithLLM(data: ResumeInput): Promise<string> {
   const provider = process.env.LLM_PROVIDER ?? 'openai'
-  const model = process.env.LLM_MODEL ?? 'gpt-3.5-turbo'
+  const model = process.env.LLM_MODEL ?? 'gpt-4o-mini'
   const apiKey = process.env.OPENAI_API_KEY
+
+  console.log('OPENAI_API_KEY:', apiKey)
 
   if (provider !== 'openai' || !apiKey) {
     throw new Error('LLM not configured')
@@ -32,7 +34,8 @@ export async function improveWithLLM(data: ResumeInput): Promise<string> {
       ],
       temperature: 0.7,
     })
-  } catch {
+  } catch (err) {
+    console.error('OpenAI error:', err)
     throw new Error('LLM request failed')
   }
 
